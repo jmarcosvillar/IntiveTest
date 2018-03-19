@@ -9,6 +9,9 @@ namespace TestIntive.Model
         Product product;
         DateTime startTime;
 
+        /// <summary>
+        /// The rental type
+        /// </summary>
         public RentalType Type
         {
             get
@@ -21,6 +24,10 @@ namespace TestIntive.Model
                 type = value;
             }
         }
+
+        /// <summary>
+        /// The price of the rental
+        /// </summary>
         public double Price
         {
             get
@@ -33,6 +40,10 @@ namespace TestIntive.Model
                 price = value;
             }
         }
+
+        /// <summary>
+        /// The product that it will be rented
+        /// </summary>
         public Product Product
         {
             get
@@ -46,6 +57,12 @@ namespace TestIntive.Model
             }
         }
 
+        /// <summary>
+        /// Create a new rental
+        /// </summary>
+        /// <param name="type">Type of the rental</param>
+        /// <param name="price">Price of the rental</param>
+        /// <param name="product">Product that will be rented</param>
         public Rental(RentalType type, double price, Product product)
         {
             this.type = type;

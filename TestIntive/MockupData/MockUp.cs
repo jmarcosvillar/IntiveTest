@@ -27,7 +27,7 @@ namespace TestIntive.MockupData
         }
         public static Promotion GetFamilyPromotion(List<Rental> rentals)
         {
-            Promotion promotion = new Promotion("Family Promotion", PromotionsType.Percentage, 30, rentals);
+            Promotion promotion = new Promotion("Family Promotion", PromotionType.Percentage, 30, rentals);
             return promotion;
         }
         public static Sales GetSale()

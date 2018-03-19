@@ -10,6 +10,9 @@ namespace TestIntive.Model
         Promotion promotion;
         double totalAmount;
 
+        /// <summary>
+        /// Date of the creation of the Sale
+        /// </summary>
         public DateTime StartTime
         {
             get
@@ -21,7 +24,10 @@ namespace TestIntive.Model
                 startTime = value;
             }
         }
-
+        
+        /// <summary>
+        /// The list of the rentals associated to this sale
+        /// </summary>
         public List<Rental> Rentals
         {
             get
@@ -30,6 +36,10 @@ namespace TestIntive.Model
             }
         }
 
+        /// <summary>
+        /// The promotion of the Sale
+        /// You only can apply one promotion to each Sale.
+        /// </summary>
         public Promotion Promotion
         {
             get
@@ -46,6 +56,9 @@ namespace TestIntive.Model
             }
         }
 
+        /// <summary>
+        /// The total price of the sale, with the discounts of the promotion applied
+        /// </summary>
         public double TotalAmount
         {
             get
@@ -60,6 +73,10 @@ namespace TestIntive.Model
             startTime = DateTime.Now;
         }
 
+        /// <summary>
+        /// Add a new rental to the Sale
+        /// </summary>
+        /// <param name="r">Rental to be added</param>
         public void AddRental(Rental r)
         {
             rentals.Add(r);

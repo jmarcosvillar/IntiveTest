@@ -3,16 +3,23 @@ using TestIntive.Exceptions;
 
 namespace TestIntive.Model
 {
+    /// <summary>
+    /// The promotions have multiple rentals and apply discounts
+    /// </summary>
     public class Promotion
     {
         private const int MAX_RENTAL_AMOUNT = 5;
         private const int MIN_RENTAL_AMOUNT = 3;
 
         string name;
-        PromotionsType type;
+        PromotionType type;
         double discount;
         List<Rental> rentals;
         double totalAmount = 0;
+
+        /// <summary>
+        /// The name of the promotion
+        /// </summary>
         public string Name
         {
             get
@@ -25,7 +32,11 @@ namespace TestIntive.Model
                 name = value;
             }
         }
-        public PromotionsType Type
+
+        /// <summary>
+        /// Type of promotion
+        /// </summary>
+        public PromotionType Type
         {
             get
             {
@@ -37,6 +48,11 @@ namespace TestIntive.Model
                 type = value;
             }
         }
+
+        /// <summary>
+        /// Apply discounts to the price of each rentals. 
+        /// </summary>
+        /// <remarks>Take in account the PromotionType</remarks>
         public double Discount
         {
             get
@@ -49,6 +65,10 @@ namespace TestIntive.Model
                 discount = value;
             }
         }
+
+        /// <summary>
+        /// The total price of all the rentals on this promotion, with the discount applied
+        /// </summary>
         public double TotalAmount
         {
             get
@@ -57,7 +77,14 @@ namespace TestIntive.Model
             }
         }
 
-        public Promotion(string name, PromotionsType type, double discount, List<Rental> rentals)
+        /// <summary>
+        /// Create a new promotion
+        /// </summary>
+        /// <param name="name">Name of the promotion</param>
+        /// <param name="type">Type of the promotion</param>
+        /// <param name="discount">Discount to be applied to the rentals</param>
+        /// <param name="rentals">Rentals contained on this promotion</param>
+        public Promotion(string name, PromotionType type, double discount, List<Rental> rentals)
         {
             if (rentals.Count >= MIN_RENTAL_AMOUNT)
             {
@@ -85,6 +112,12 @@ namespace TestIntive.Model
                 throw new NotEnoughRentalsException();
             }
         }
+
+        /// <summary>
+        /// Add a new rental to this promotion.
+        /// </summary>
+        /// <remarks>Take in account the max rental amount</remarks>
+        /// <param name="rental">Rental too add</param>
         public void AddRental(Rental rental)
         {
             if (rentals.Count <= MAX_RENTAL_AMOUNT)
@@ -102,17 +135,20 @@ namespace TestIntive.Model
         {
             switch (type)
             {
-                case PromotionsType.Percentage:
+                case PromotionType.Percentage:
                     r.Price -= (r.Price * discount) / 100;
                     break;
-                case PromotionsType.FixedAmount:
+                case PromotionType.FixedAmount:
                     r.Price = r.Price - discount;
                     break;
             }
         }
     }
 
-    public enum PromotionsType
+    /// <summary>
+    /// Promotion type
+    /// </summary>
+    public enum PromotionType
     {
         FixedAmount = 1,
         Percentage = 2
